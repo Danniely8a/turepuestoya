@@ -6,11 +6,6 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const slides = [
   {
-    id: 1,
-    image: "/heroes/hero-1.png",
-    alt: "Repuestos automotrices de calidad",
-  },
-  {
     id: 2,
     image: "/heroes/hero-2.png",
     alt: "Repuestos automotrices de calidad",
@@ -56,7 +51,7 @@ export default function HeroSlider() {
 
   return (
     <section
-      className="hero-slider relative mx-[4vw] mt-6 rounded-[35px] overflow-hidden"
+      className="hero-slider relative mx-[4vw] mt-6 overflow-hidden"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >

@@ -12,6 +12,18 @@ export default function Header() {
 
   return (
     <>
+      {/* Top Bar - Cashea Banner */}
+      <div className="top-bar flex justify-center items-center px-[4vw] py-[6px] bg-[#ffe033]">
+        <Image
+          src="/cashea11.png"
+          alt="Cashea"
+          width={400}
+          height={28}
+          className="h-[38px] w-auto object-contain"
+          priority
+        />
+      </div>
+
       {/* Header */}
       <header className="header-el flex items-center gap-[26px] px-[4vw] border-b border-[var(--l)] sticky top-0 bg-[#fffffff2] backdrop-blur-[12px] z-20 h-[82px]">
         {/* Logo */}
@@ -21,7 +33,7 @@ export default function Header() {
             alt="Tu Repuesto Ya"
             width={2172}
             height={724}
-            className="block h-[42px] w-auto"
+            className="block h-[56px] w-auto"
             priority
           />
         </Link>
