@@ -7,27 +7,27 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 const slides = [
   {
     id: 1,
-    image: "/heroes/hero 1.png",
+    image: "/heroes/hero-1.png",
     alt: "Repuestos automotrices de calidad",
   },
   {
     id: 2,
-    image: "/heroes/hero 2.png",
+    image: "/heroes/hero-2.png",
     alt: "Repuestos automotrices de calidad",
   },
   {
     id: 3,
-    image: "/heroes/hero 3.png",
+    image: "/heroes/hero-3.png",
     alt: "Repuestos automotrices de calidad",
   },
   {
     id: 4,
-    image: "/heroes/hero 4.png",
+    image: "/heroes/hero-4.png",
     alt: "Repuestos automotrices de calidad",
   },
   {
     id: 5,
-    image: "/heroes/hero 5.png",
+    image: "/heroes/hero-5.png",
     alt: "Repuestos automotrices de calidad",
   },
 ];
