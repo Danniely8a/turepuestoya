@@ -25,6 +25,11 @@ export default function Footer() {
           <h4 className="text-[14px] font-[700] mb-5 text-white">Tienda</h4>
           <ul className="space-y-3 list-none p-0 m-0">
             <li>
+              <Link href="/" className="text-[13px] text-[#9da5ac] no-underline hover:text-[var(--c)] transition-colors">
+                Inicio
+              </Link>
+            </li>
+            <li>
               <Link href="/catalogo" className="text-[13px] text-[#9da5ac] no-underline hover:text-[var(--c)] transition-colors">
                 Catálogo completo
               </Link>
