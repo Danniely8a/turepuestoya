@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import Link from "next/link";
 import HeroSlider from "@/components/HeroSlider";
 import BrandCarousel from "@/components/BrandCarousel";
 import ProductCard from "@/components/ProductCard";
@@ -17,26 +18,9 @@ const filterCategories = [
   ...categories.map((c) => ({ id: c.id, name: c.name, icon: categoryIcons[c.id] || "📦" })),
 ];
 
+const featuredProducts = allProducts.slice(0, 4);
+
 export default function Home() {
-  const [activeCategory, setActiveCategory] = useState("all");
-  const [searchQuery, setSearchQuery] = useState("");
-
-  const filteredProducts = useMemo(() => {
-    let result = [...allProducts];
-    if (activeCategory !== "all") {
-      result = result.filter((p) => p.category === activeCategory);
-    }
-    if (searchQuery) {
-      const term = searchQuery.toLowerCase();
-      result = result.filter(
-        (p) =>
-          p.name.toLowerCase().includes(term) ||
-          p.brand.toLowerCase().includes(term)
-      );
-    }
-    return result;
-  }, [activeCategory, searchQuery]);
-
   return (
     <>
       {/* Hero Slider */}
@@ -92,76 +76,54 @@ export default function Home() {
         </div>
         <div className="cats-grid grid grid-cols-2 md:grid-cols-2 gap-[14px] max-w-[600px] mx-auto">
           {filterCategories.slice(1).map((cat) => (
-            <button
+            <Link
               key={cat.id}
-              onClick={() => {
-                setActiveCategory(cat.id);
-                document.getElementById("catalogo")?.scrollIntoView({ behavior: "smooth" });
-              }}
-              className={`cat-card border bg-white rounded-[18px] p-[28px_16px] text-center cursor-pointer transition-all duration-300 ${
-                activeCategory === cat.id
-                  ? "border-[var(--c)] shadow-[0_12px_30px_#ff4f401c] bg-gradient-to-b from-white to-[var(--c)]/5"
-                  : "border-[var(--l)] hover:border-[var(--c)]/40"
+              href={`/catalogo?categoria=${cat.id}`}
+              className={`cat-card border bg-white rounded-[18px] p-[28px_16px] text-center no-underline transition-all duration-300 ${
+                "border-[var(--l)] hover:border-[var(--c)]/40"
               }`}
             >
               <span className="block text-[38px] mb-[10px] not-italic">{cat.icon}</span>
-              <b className="text-[15px] font-[700]">{cat.name}</b>
-            </button>
+              <b className="text-[15px] font-[700] text-[var(--i)]">{cat.name}</b>
+            </Link>
           ))}
         </div>
       </section>
 
-      {/* Catalog */}
+      {/* Featured Products */}
       <section className="catalog-section px-[4vw] py-[72px] bg-[var(--s)]" id="catalogo">
         <div className="section-el">
           <div className="text-center mb-[40px]">
             <span className="eye-label text-[var(--c)] text-[12px] font-[800] tracking-[.1em] uppercase flex items-center justify-center gap-2 mb-3">
               <span className="inline-block w-[24px] h-[2px] bg-[var(--c)] rounded-full" />
-              Catálogo
+              Destacados
               <span className="inline-block w-[24px] h-[2px] bg-[var(--c)] rounded-full" />
             </span>
             <h2 className="text-[clamp(28px,4vw,44px)] tracking-[-.04em] font-[800]">
-              Repuestos disponibles
+              Productos destacados
             </h2>
             <p className="text-[var(--m)] mt-3 max-w-[480px] mx-auto text-[15px]">
-              Encuentra el repuesto que necesitas para tu vehículo.
+              Los repuestos más buscados por nuestros clientes.
             </p>
           </div>
 
-          {/* Filters */}
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-[30px]">
-            <div className="filters flex gap-[8px] flex-wrap">
-              {filterCategories.map((cat) => (
-                <button
-                  key={cat.id}
-                  onClick={() => setActiveCategory(cat.id)}
-                  className={`filter-btn border rounded-full py-[10px] px-[18px] cursor-pointer text-[13px] font-[600] transition-all duration-300 ${
-                    activeCategory === cat.id
-                      ? "bg-[var(--i)] text-white border-[var(--i)] shadow-md"
-                      : "bg-white border-[var(--l)] text-[var(--i)] hover:border-[var(--m)] hover:shadow-sm"
-                  }`}
-                >
-                  {cat.icon} {cat.name}
-                </button>
-              ))}
-            </div>
-            <span className="text-[13px] text-[var(--m)] whitespace-nowrap bg-white px-4 py-2 rounded-full border border-[var(--l)]">
-              {filteredProducts.length} productos
-            </span>
-          </div>
-
-          {/* Products Grid */}
-          <div className="products-grid grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[18px]">
-            {filteredProducts.map((product) => (
+          {/* Products Grid - 4 featured */}
+          <div className="products-grid grid grid-cols-2 md:grid-cols-4 gap-[18px]">
+            {featuredProducts.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
           </div>
 
-          {filteredProducts.length === 0 && (
-            <div className="text-center py-20">
-              <p className="text-[var(--m)] text-[16px]">No se encontraron productos en esta categoría.</p>
-            </div>
-          )}
+          {/* Ver catálogo completo */}
+          <div className="text-center mt-[40px]">
+            <Link
+              href="/catalogo"
+              className="btn-primary inline-flex items-center gap-2"
+            >
+              Ver catálogo completo
+              <ArrowRight size={16} />
+            </Link>
+          </div>
         </div>
       </section>
 
