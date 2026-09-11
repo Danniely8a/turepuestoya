@@ -10,14 +10,15 @@ const brands = Array.from({ length: 16 }, (_, i) => ({
 
 export default function BrandCarousel() {
   return (
-    <section className="py-12 overflow-hidden">
-      <div className="max-w-[1450px] mx-auto px-[4vw] mb-8">
+    <section className="py-16 overflow-hidden bg-white">
+      <div className="max-w-[1450px] mx-auto px-[4vw] mb-10">
         <div className="text-center">
-          <span className="eye-label text-[var(--c)] text-[13px] font-[800] tracking-[.08em] uppercase flex items-center justify-center gap-2">
-            <span className="inline-block w-[8px] h-[8px] bg-[var(--c)] rounded-full" />
+          <span className="eye-label text-[var(--c)] text-[12px] font-[800] tracking-[.1em] uppercase flex items-center justify-center gap-2 mb-3">
+            <span className="inline-block w-[24px] h-[2px] bg-[var(--c)] rounded-full" />
             Nuestras Marcas
+            <span className="inline-block w-[24px] h-[2px] bg-[var(--c)] rounded-full" />
           </span>
-          <h2 className="text-[clamp(28px,3.5vw,42px)] tracking-[-.04em] mt-3">
+          <h2 className="text-[clamp(24px,3.5vw,38px)] tracking-[-.03em] mt-3 font-[800]">
             Trabajamos con las mejores marcas
           </h2>
         </div>
@@ -26,23 +27,22 @@ export default function BrandCarousel() {
       {/* Carousel Container */}
       <div className="relative">
         {/* Fade edges */}
-        <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
 
         {/* Scroller */}
-        <div className="brand-scroller flex gap-8 items-center">
-          {/* Duplicate for infinite effect */}
+        <div className="brand-scroller flex gap-6 items-center">
           {[...brands, ...brands, ...brands].map((brand, i) => (
             <div
               key={`${brand.id}-${i}`}
-              className="brand-item flex-shrink-0 w-[100px] h-[100px] md:w-[120px] md:h-[120px] bg-white rounded-[17px] border border-[var(--l)] p-3 flex items-center justify-center transition-all duration-300 hover:border-[var(--c)] hover:shadow-[0_12px_30px_#ff4f401c] hover:scale-105 cursor-pointer"
+              className="brand-item flex-shrink-0 w-[110px] h-[110px] md:w-[130px] md:h-[130px] bg-white rounded-[18px] border border-[var(--l)] p-4 flex items-center justify-center transition-all duration-300 hover:border-[var(--c)]/40 hover:shadow-[0_8px_25px_rgba(255,79,64,0.1)] hover:scale-105 cursor-pointer"
             >
               <Image
                 src={brand.src}
                 alt={brand.alt}
-                width={80}
-                height={80}
-                className="object-contain w-full h-full"
+                width={90}
+                height={90}
+                className="object-contain w-full h-full opacity-80 hover:opacity-100 transition-opacity duration-300"
                 unoptimized
               />
             </div>
@@ -56,11 +56,11 @@ export default function BrandCarousel() {
             transform: translateX(0);
           }
           100% {
-            transform: translateX(calc(-128px * 16 - 32px * 16));
+            transform: translateX(calc(-136px * 16 - 24px * 16));
           }
         }
         .brand-scroller {
-          animation: scroll 40s linear infinite;
+          animation: scroll 45s linear infinite;
           width: max-content;
         }
         .brand-scroller:hover {

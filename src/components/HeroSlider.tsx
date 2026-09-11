@@ -51,7 +51,7 @@ export default function HeroSlider() {
 
   return (
     <section
-      className="hero-slider relative mx-[4vw] mt-6 rounded-[20px] overflow-hidden"
+      className="hero-slider relative mx-[4vw] mt-6 rounded-[20px] overflow-hidden group/slider"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
@@ -60,8 +60,8 @@ export default function HeroSlider() {
         {slides.map((slide, i) => (
           <div
             key={slide.id}
-            className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
-              i === current ? "opacity-100 z-10" : "opacity-0 z-0"
+            className={`absolute inset-0 transition-all duration-700 ease-in-out ${
+              i === current ? "opacity-100 z-10 scale-100" : "opacity-0 z-0 scale-105"
             }`}
           >
             <Image
@@ -79,27 +79,27 @@ export default function HeroSlider() {
       {/* Navigation Arrows */}
       <button
         onClick={prev}
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center text-[var(--i)] hover:bg-white transition-colors shadow-lg"
+        className="absolute left-5 top-1/2 -translate-y-1/2 z-20 w-[48px] h-[48px] bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-[var(--i)] opacity-0 group-hover/slider:opacity-100 transition-all duration-300 hover:bg-white hover:scale-110 shadow-[0_4px_20px_rgba(0,0,0,0.15)]"
       >
-        <ChevronLeft size={24} />
+        <ChevronLeft size={22} strokeWidth={2.5} />
       </button>
       <button
         onClick={next}
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center text-[var(--i)] hover:bg-white transition-colors shadow-lg"
+        className="absolute right-5 top-1/2 -translate-y-1/2 z-20 w-[48px] h-[48px] bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center text-[var(--i)] opacity-0 group-hover/slider:opacity-100 transition-all duration-300 hover:bg-white hover:scale-110 shadow-[0_4px_20px_rgba(0,0,0,0.15)]"
       >
-        <ChevronRight size={24} />
+        <ChevronRight size={22} strokeWidth={2.5} />
       </button>
 
       {/* Dots */}
-      <div className="absolute bottom-5 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex gap-2.5 bg-black/20 backdrop-blur-sm px-4 py-2.5 rounded-full">
         {slides.map((_, i) => (
           <button
             key={i}
             onClick={() => goTo(i)}
-            className={`h-2.5 rounded-full transition-all duration-300 ${
+            className={`h-2 rounded-full transition-all duration-400 ${
               i === current
-                ? "bg-[var(--c)] w-8"
-                : "bg-white/60 hover:bg-white w-2.5"
+                ? "bg-white w-7"
+                : "bg-white/40 hover:bg-white/70 w-2"
             }`}
           />
         ))}

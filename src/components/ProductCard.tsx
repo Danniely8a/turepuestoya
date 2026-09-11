@@ -4,7 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { Product } from "@/data/products";
 import { useCart } from "@/context/CartContext";
-import { Check, Plus } from "lucide-react";
+import { Check, Plus, MessageCircle } from "lucide-react";
 
 export default function ProductCard({ product }: { product: Product }) {
   const [added, setAdded] = useState(false);
@@ -18,38 +18,66 @@ export default function ProductCard({ product }: { product: Product }) {
     setTimeout(() => setAdded(false), 1700);
   };
 
+  const handleWhatsApp = () => {
+    const msg = encodeURIComponent(`Hola, me interesa el producto: ${product.name}. ¿Está disponible?`);
+    window.open(`https://wa.me/5804241833450?text=${msg}`, "_blank");
+  };
+
   return (
-    <article className="product-card border border-[var(--l)] bg-white rounded-[21px] overflow-hidden transition-all duration-200 hover:translate-y-[-4px] hover:shadow-[var(--sh)]">
+    <article className="product-card group border border-[var(--l)] bg-white rounded-[20px] overflow-hidden">
       {/* Image */}
-      <div className="product-img aspect-square bg-gradient-to-br from-white to-[#edf0f2] grid place-items-center relative">
+      <div className="product-img aspect-square bg-gradient-to-br from-[#f8f9fa] to-[#edf0f2] grid place-items-center relative overflow-hidden">
         <Image
           src={product.image}
           alt={product.name}
           fill
-          className="object-contain p-[10%]"
+          className="object-contain p-[12%] transition-transform duration-500 group-hover:scale-105"
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
         />
+        {/* Subtle overlay on hover */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       </div>
 
       {/* Content */}
-      <div className="product-body p-[17px]">
-        <span className="stock text-[12px] text-[var(--g)] font-[800]">
-          ● Disponible
-        </span>
-        <h3 className="text-[16px] my-[7px] font-[700]">{product.name}</h3>
-        <div className="meta text-[13px] text-[#818990]">
-          {product.category} · Varias marcas
+      <div className="product-body p-[20px]">
+        <div className="flex items-center gap-2 mb-2">
+          <span className="inline-flex items-center gap-1 text-[11px] font-[700] text-[var(--g)] bg-[var(--g)]/10 px-2 py-1 rounded-full">
+            <span className="w-1.5 h-1.5 bg-[var(--g)] rounded-full" />
+            Disponible
+          </span>
         </div>
-        <div className="flex justify-end mt-[17px]">
+        <h3 className="text-[15px] leading-[1.4] font-[600] text-[var(--i)] mb-2 line-clamp-2 min-h-[42px]">
+          {product.name}
+        </h3>
+        <div className="text-[12px] text-[var(--m)] mb-4">
+          {product.subcategory} · Varias marcas
+        </div>
+        <div className="flex gap-2">
           <button
             onClick={handleAdd}
-            className={`add-btn w-[38px] h-[38px] border-0 rounded-full grid place-items-center text-[20px] cursor-pointer transition-colors ${
+            className={`flex-1 h-[42px] border-0 rounded-[12px] grid place-items-center gap-2 text-[13px] font-[600] cursor-pointer transition-all duration-300 ${
               isInCart || added
                 ? "bg-[var(--g)] text-white"
-                : "bg-[var(--i)] text-white"
+                : "bg-[var(--i)] text-white hover:bg-[var(--c)]"
             }`}
           >
-            {isInCart || added ? <Check size={18} /> : <Plus size={18} />}
+            {isInCart || added ? (
+              <>
+                <Check size={16} />
+                Agregado
+              </>
+            ) : (
+              <>
+                <Plus size={16} />
+                Agregar
+              </>
+            )}
+          </button>
+          <button
+            onClick={handleWhatsApp}
+            className="w-[42px] h-[42px] border border-[var(--l)] bg-white rounded-[12px] grid place-items-center cursor-pointer hover:bg-[#25d366] hover:text-white hover:border-[#25d366] transition-all duration-300"
+          >
+            <MessageCircle size={16} />
           </button>
         </div>
       </div>
