@@ -71,7 +71,7 @@ export default function MobileNav() {
             );
           }
 
-          const Icon = item.icon;
+          const Icon = item.icon!;
 
           return (
             <Link

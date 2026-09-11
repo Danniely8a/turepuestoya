@@ -180,3 +180,28 @@ button, input, select {
 img {
   transition: opacity 0.3s ease;
 }
+
+/* Safe area for mobile bottom nav */
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Mobile app-like styles */
+@media (max-width: 768px) {
+  body {
+    -webkit-tap-highlight-color: transparent;
+    overscroll-behavior-y: none;
+  }
+
+  .product-card {
+    border-radius: 16px;
+  }
+
+  .product-card:hover {
+    transform: none;
+  }
+
+  button, a {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
