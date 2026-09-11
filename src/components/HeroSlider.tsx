@@ -51,12 +51,12 @@ export default function HeroSlider() {
 
   return (
     <section
-      className="hero-slider relative mx-[4vw] mt-6 overflow-hidden"
+      className="hero-slider relative mx-[4vw] mt-6 rounded-[20px] overflow-hidden"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
       {/* Slides */}
-      <div className="relative h-[280px] sm:h-[380px] md:h-[480px] lg:h-[560px]">
+      <div className="relative h-[320px] sm:h-[440px] md:h-[560px] lg:h-[650px]">
         {slides.map((slide, i) => (
           <div
             key={slide.id}
