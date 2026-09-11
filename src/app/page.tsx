@@ -141,7 +141,7 @@ export default function Home() {
               Nuestro equipo de expertos te ayuda a encontrar la pieza correcta. Contáctanos y recibe asesoría personalizada.
             </p>
             <a
-              href="https://wa.me/5804241833450?text=Hola%2C%20necesito%20ayuda%20para%20encontrar%20un%20repuesto"
+              href="https://wa.me/584242704828?text=Hola%2C%20necesito%20ayuda%20para%20encontrar%20un%20repuesto"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-primary inline-flex items-center gap-2"

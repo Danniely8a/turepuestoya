@@ -11,7 +11,7 @@ export default function CartDrawer() {
     if (items.length === 0) return;
     const names = items.map((item) => item.product.name).join(", ");
     window.open(
-      `https://wa.me/5804241833450?text=${encodeURIComponent(
+      `https://wa.me/584242704828?text=${encodeURIComponent(
         `Hola Tu Repuesto Ya, quisiera consultar: ${names}`
       )}`,
       "_blank"

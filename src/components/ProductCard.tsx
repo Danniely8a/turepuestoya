@@ -20,7 +20,7 @@ export default function ProductCard({ product }: { product: Product }) {
 
   const handleWhatsApp = () => {
     const msg = encodeURIComponent(`Hola, me interesa el producto: ${product.name}. ¿Está disponible?`);
-    window.open(`https://wa.me/5804241833450?text=${msg}`, "_blank");
+    window.open(`https://wa.me/584242704828?text=${msg}`, "_blank");
   };
 
   return (

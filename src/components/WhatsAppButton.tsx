@@ -1,10 +1,10 @@
-export default function WhatsAppButton() {
+export default function WhatsAppButton({ className = "" }: { className?: string }) {
   return (
     <a
       href="https://wa.me/5804241833450?text=Hola%20Tu%20Repuesto%20Ya%2C%20quisiera%20consultar%20por%20un%20repuesto"
       target="_blank"
       rel="noopener noreferrer"
-      className="wa-float fixed right-[23px] bottom-[23px] z-[25] w-[62px] h-[62px] rounded-full bg-[#25d366] text-white no-underline grid place-items-center shadow-[0_13px_30px_#1482434d] hover:scale-110 transition-transform"
+      className={`wa-float fixed right-[23px] bottom-[23px] z-[25] w-[62px] h-[62px] rounded-full bg-[#25d366] text-white no-underline grid place-items-center shadow-[0_13px_30px_#1482434d] hover:scale-110 transition-transform ${className}`}
     >
       <span className="wa-tooltip absolute right-[72px] bg-white text-[var(--i)] text-[13px] font-[700] py-[10px] px-[13px] rounded-[11px] whitespace-nowrap shadow-[var(--sh)] hidden md:block">
         ¿Necesitas ayuda?

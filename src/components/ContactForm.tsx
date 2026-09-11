@@ -17,7 +17,7 @@ export default function ContactForm() {
     e.preventDefault();
     const whatsappMessage = `Hola, soy ${formData.name}. ${formData.message}. Mi correo es ${formData.email} y mi teléfono es ${formData.phone}. Asunto: ${formData.subject}`;
     window.open(
-      `https://wa.me/5804241833450?text=${encodeURIComponent(whatsappMessage)}`,
+      `https://wa.me/584242704828?text=${encodeURIComponent(whatsappMessage)}`,
       "_blank"
     );
     setSubmitted(true);
@@ -129,7 +129,7 @@ export default function ContactForm() {
               </div>
               <div>
                 <p className="font-[700]">Ventas</p>
-                <p className="text-gray-300 text-[14px]">+58 (0424) 183.34.50</p>
+                <p className="text-gray-300 text-[14px]">+58 (0424) 270.48.28</p>
               </div>
             </div>
             <div className="flex items-start gap-4">
@@ -164,7 +164,7 @@ export default function ContactForm() {
         </div>
 
         <a
-          href="https://wa.me/5804241833450?text=Hola,%20necesito%20ayuda"
+          href="https://wa.me/584242704828?text=Hola,%20necesito%20ayuda"
           target="_blank"
           rel="noopener noreferrer"
           className="block bg-[#25d366] text-white rounded-[22px] p-6 text-center hover:bg-[#1da851] transition-colors"

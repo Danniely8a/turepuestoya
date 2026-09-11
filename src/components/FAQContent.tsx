@@ -82,7 +82,7 @@ export default function FAQContent() {
         <h3 className="text-[20px] mb-2">¿No encontraste tu respuesta?</h3>
         <p className="text-[#b7bec4] text-[14px] mb-6">Contáctanos directamente y te ayudaremos</p>
         <a
-          href="https://wa.me/5804241833450?text=Hola,%20tengo%20una%20pregunta"
+          href="https://wa.me/584242704828?text=Hola,%20tengo%20una%20pregunta"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-block bg-[#25d366] text-white px-8 py-3 rounded-full font-[800] hover:bg-[#1da851] transition-colors"

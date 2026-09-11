@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import CartDrawer from "@/components/CartDrawer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import MobileNav from "@/components/MobileNav";
 import { CartProvider } from "@/context/CartContext";
 
 const inter = Inter({
@@ -38,10 +39,11 @@ export default function RootLayout({
       <body className="font-[var(--font-inter)] antialiased">
         <CartProvider>
           <Header />
-          <main>{children}</main>
+          <main className="pb-[80px] md:pb-0">{children}</main>
           <Footer />
           <CartDrawer />
-          <WhatsAppButton />
+          <WhatsAppButton className="hidden md:grid" />
+          <MobileNav />
         </CartProvider>
       </body>
     </html>
