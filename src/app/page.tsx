@@ -49,24 +49,6 @@ export default function Home() {
             );
           })}
 
-          {/* Quick Access Cards */}
-          <a
-            href="https://mobile.cashea.app/merchants/1ca57a42-aef9-4e55-8483-395049ddc7bd"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-4 bg-[#ffe033] rounded-[18px] p-4 no-underline hover:shadow-[0_8px_30px_rgba(255,224,51,0.3)] transition-all duration-300"
-          >
-            <div className="w-[56px] h-[56px] rounded-[14px] grid place-items-center flex-shrink-0 bg-white">
-              <svg viewBox="0 0 24 24" width="28" height="28" fill="#1a1a1a">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15l-4-4 1.41-1.41L11 14.17l6.59-6.59L19 9l-8 8z"/>
-              </svg>
-            </div>
-            <div>
-              <b className="text-[14px] font-[700] text-[#1a1a1a] block">Cashea</b>
-              <span className="text-[12px] text-[#1a1a1a]/70">Paga en cuotas sin interés</span>
-            </div>
-          </a>
-
           <Link
             href="/catalogo"
             className="flex items-center gap-4 bg-white border border-[var(--l)] rounded-[18px] p-4 no-underline hover:border-[var(--c)]/40 hover:shadow-[0_8px_30px_rgba(255,79,64,0.08)] transition-all duration-300"
