@@ -6,6 +6,11 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const slides = [
   {
+    id: 1,
+    image: "/heroes/hero-1.png",
+    alt: "Repuestos automotrices de calidad",
+  },
+  {
     id: 2,
     image: "/heroes/hero-2.png",
     alt: "Repuestos automotrices de calidad",
