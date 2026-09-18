@@ -13,18 +13,6 @@ export default function Header() {
 
   return (
     <>
-      {/* Top Bar - Cashea Banner */}
-      <div className="top-bar flex justify-center items-center px-[4vw] py-[6px] bg-[#ffe033]">
-        <Image
-          src="/cashea11.png"
-          alt="Cashea"
-          width={400}
-          height={28}
-          className="h-[38px] w-auto object-contain"
-          priority
-        />
-      </div>
-
       {/* Header */}
       <header className="header-el sticky top-0 z-20 bg-white/95 backdrop-blur-[12px]">
         {/* Main Header Row */}
