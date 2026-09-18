@@ -1,24 +1,19 @@
 "use client";
 
-import { useState, useMemo } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import HeroSlider from "@/components/HeroSlider";
 import BrandCarousel from "@/components/BrandCarousel";
 import ProductCard from "@/components/ProductCard";
 import { products as allProducts, categories } from "@/data/products";
-import { Truck, ShieldCheck, Wrench, ArrowRight } from "lucide-react";
+import { Truck, ShieldCheck, Wrench, ArrowRight, MessageCircle, ChevronRight } from "lucide-react";
 
-const categoryIcons: Record<string, string> = {
-  suspension: "🔩",
-  motor: "⚙️",
+const categoryData: Record<string, { icon: string; color: string; desc: string }> = {
+  suspension: { icon: "🔩", color: "#ff4f40", desc: "Amortiguadores y más" },
+  motor: { icon: "⚙️", color: "#e47b02", desc: "Inyectores y piezas" },
 };
 
-const filterCategories = [
-  { id: "all", name: "Todos", icon: "▦" },
-  ...categories.map((c) => ({ id: c.id, name: c.name, icon: categoryIcons[c.id] || "📦" })),
-];
-
-const featuredProducts = allProducts.slice(0, 4);
+const featuredProducts = allProducts.slice(0, 6);
 
 export default function Home() {
   return (
@@ -26,134 +21,131 @@ export default function Home() {
       {/* Hero Slider */}
       <HeroSlider />
 
-      {/* Trust Bar */}
-      <section className="mx-[4vw] mt-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <article className="flex items-center gap-4 bg-white border border-[var(--l)] rounded-[16px] p-5 transition-all duration-300 hover:shadow-lg hover:border-[var(--c)]/20">
-            <div className="w-[52px] h-[52px] bg-[var(--c)]/10 rounded-[14px] grid place-items-center flex-shrink-0">
-              <Truck size={24} className="text-[var(--c)]" />
+      {/* Categories - Yummy Style Grid */}
+      <section className="px-[4vw] py-[48px]" id="categorias">
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-[18px] font-[800] text-[var(--i)]">¿Qué necesitas hoy?</h2>
+          <Link href="/catalogo" className="text-[var(--c)] text-[13px] font-[700] no-underline flex items-center gap-1">
+            Ver todo <ChevronRight size={14} />
+          </Link>
+        </div>
+        <div className="grid grid-cols-2 gap-3">
+          {categories.map((cat) => {
+            const data = categoryData[cat.id] || { icon: "📦", color: "#64717c", desc: "Repuestos" };
+            return (
+              <Link
+                key={cat.id}
+                href={`/catalogo?categoria=${cat.id}`}
+                className="flex items-center gap-4 bg-white border border-[var(--l)] rounded-[18px] p-4 no-underline hover:border-[var(--c)]/40 hover:shadow-[0_8px_30px_rgba(255,79,64,0.08)] transition-all duration-300"
+              >
+                <div className="w-[56px] h-[56px] rounded-[14px] grid place-items-center flex-shrink-0 text-[28px]" style={{ background: `${data.color}12` }}>
+                  {data.icon}
+                </div>
+                <div>
+                  <b className="text-[14px] font-[700] text-[var(--i)] block">{cat.name}</b>
+                  <span className="text-[12px] text-[var(--m)]">{data.desc}</span>
+                </div>
+              </Link>
+            );
+          })}
+
+          {/* Quick Access Cards */}
+          <Link
+            href="/catalogo"
+            className="flex items-center gap-4 bg-white border border-[var(--l)] rounded-[18px] p-4 no-underline hover:border-[var(--c)]/40 hover:shadow-[0_8px_30px_rgba(255,79,64,0.08)] transition-all duration-300"
+          >
+            <div className="w-[56px] h-[56px] rounded-[14px] grid place-items-center flex-shrink-0 text-[28px]" style={{ background: "#1fac6612" }}>
+              🛒
             </div>
             <div>
-              <b className="text-[14px] font-[700]">Envíos a toda Venezuela</b>
-              <p className="text-[12px] text-[var(--m)] mt-0.5">Recibe tus repuestos donde estés</p>
+              <b className="text-[14px] font-[700] text-[var(--i)] block">Catálogo</b>
+              <span className="text-[12px] text-[var(--m)]">Ver todos los repuestos</span>
             </div>
-          </article>
-          <article className="flex items-center gap-4 bg-white border border-[var(--l)] rounded-[16px] p-5 transition-all duration-300 hover:shadow-lg hover:border-[var(--c)]/20">
-            <div className="w-[52px] h-[52px] bg-[var(--c)]/10 rounded-[14px] grid place-items-center flex-shrink-0">
-              <ShieldCheck size={24} className="text-[var(--c)]" />
-            </div>
-            <div>
-              <b className="text-[14px] font-[700]">Compatibilidad verificada</b>
-              <p className="text-[12px] text-[var(--m)] mt-0.5">Te ayudamos a elegir la pieza</p>
-            </div>
-          </article>
-          <article className="flex items-center gap-4 bg-white border border-[var(--l)] rounded-[16px] p-5 transition-all duration-300 hover:shadow-lg hover:border-[var(--c)]/20">
-            <div className="w-[52px] h-[52px] bg-[var(--c)]/10 rounded-[14px] grid place-items-center flex-shrink-0">
-              <Wrench size={24} className="text-[var(--c)]" />
+          </Link>
+
+          <a
+            href="https://wa.me/584242704828?text=Hola%2C%20necesito%20asesoría"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-4 bg-[#25d366] rounded-[18px] p-4 no-underline hover:bg-[#1da851] transition-all duration-300"
+          >
+            <div className="w-[56px] h-[56px] rounded-[14px] grid place-items-center flex-shrink-0 bg-white/20">
+              <MessageCircle size={28} className="text-white" />
             </div>
             <div>
-              <b className="text-[14px] font-[700]">Talleres aliados</b>
-              <p className="text-[12px] text-[var(--m)] mt-0.5">Instalación y servicio profesional</p>
+              <b className="text-[14px] font-[700] text-white block">WhatsApp</b>
+              <span className="text-[12px] text-white/80">Chatea con nosotros</span>
             </div>
-          </article>
+          </a>
         </div>
       </section>
 
-      {/* Categories */}
-      <section className="section-el px-[4vw] py-[72px]" id="categorias">
-        <div className="text-center mb-[40px]">
-          <span className="eye-label text-[var(--c)] text-[12px] font-[800] tracking-[.1em] uppercase flex items-center justify-center gap-2 mb-3">
-            <span className="inline-block w-[24px] h-[2px] bg-[var(--c)] rounded-full" />
-            Explora rápido
-            <span className="inline-block w-[24px] h-[2px] bg-[var(--c)] rounded-full" />
-          </span>
-          <h2 className="text-[clamp(28px,4vw,44px)] tracking-[-.04em] font-[800]">
-            Compra por categoría
-          </h2>
-          <p className="text-[var(--m)] mt-3 max-w-[480px] mx-auto text-[15px]">
-            Encuentra la pieza correcta según el sistema de tu vehículo.
-          </p>
+      {/* Trust Bar */}
+      <section className="px-[4vw] pb-[48px]">
+        <div className="grid grid-cols-3 gap-3">
+          <div className="flex flex-col items-center text-center bg-white border border-[var(--l)] rounded-[16px] p-4">
+            <div className="w-[44px] h-[44px] bg-[var(--c)]/10 rounded-[12px] grid place-items-center mb-3">
+              <Truck size={20} className="text-[var(--c)]" />
+            </div>
+            <b className="text-[12px] font-[700] text-[var(--i)] leading-tight">Envíos a toda Venezuela</b>
+          </div>
+          <div className="flex flex-col items-center text-center bg-white border border-[var(--l)] rounded-[16px] p-4">
+            <div className="w-[44px] h-[44px] bg-[var(--c)]/10 rounded-[12px] grid place-items-center mb-3">
+              <ShieldCheck size={20} className="text-[var(--c)]" />
+            </div>
+            <b className="text-[12px] font-[700] text-[var(--i)] leading-tight">Compatibilidad verificada</b>
+          </div>
+          <div className="flex flex-col items-center text-center bg-white border border-[var(--l)] rounded-[16px] p-4">
+            <div className="w-[44px] h-[44px] bg-[var(--c)]/10 rounded-[12px] grid place-items-center mb-3">
+              <Wrench size={20} className="text-[var(--c)]" />
+            </div>
+            <b className="text-[12px] font-[700] text-[var(--i)] leading-tight">Talleres aliados</b>
+          </div>
         </div>
-        <div className="cats-grid grid grid-cols-2 md:grid-cols-2 gap-[14px] max-w-[600px] mx-auto">
-          {filterCategories.slice(1).map((cat) => (
-            <Link
-              key={cat.id}
-              href={`/catalogo?categoria=${cat.id}`}
-              className={`cat-card border bg-white rounded-[18px] p-[28px_16px] text-center no-underline transition-all duration-300 ${
-                "border-[var(--l)] hover:border-[var(--c)]/40"
-              }`}
-            >
-              <span className="block text-[38px] mb-[10px] not-italic">{cat.icon}</span>
-              <b className="text-[15px] font-[700] text-[var(--i)]">{cat.name}</b>
-            </Link>
+      </section>
+
+      {/* Featured Products - Horizontal Scroll */}
+      <section className="pb-[48px]" id="catalogo">
+        <div className="px-[4vw] flex items-center justify-between mb-6">
+          <h2 className="text-[18px] font-[800] text-[var(--i)]">Productos destacados</h2>
+          <Link href="/catalogo" className="text-[var(--c)] text-[13px] font-[700] no-underline flex items-center gap-1">
+            Ver todo <ChevronRight size={14} />
+          </Link>
+        </div>
+        <div className="flex gap-4 overflow-x-auto px-[4vw] pb-4 snap-x snap-mandatory scrollbar-hide" style={{ scrollbarWidth: "none" }}>
+          {featuredProducts.map((product) => (
+            <div key={product.id} className="flex-shrink-0 w-[260px] snap-start">
+              <ProductCard product={product} />
+            </div>
           ))}
         </div>
       </section>
 
-      {/* Featured Products */}
-      <section className="catalog-section px-[4vw] py-[72px] bg-[var(--s)]" id="catalogo">
-        <div className="section-el">
-          <div className="text-center mb-[40px]">
-            <span className="eye-label text-[var(--c)] text-[12px] font-[800] tracking-[.1em] uppercase flex items-center justify-center gap-2 mb-3">
-              <span className="inline-block w-[24px] h-[2px] bg-[var(--c)] rounded-full" />
-              Destacados
-              <span className="inline-block w-[24px] h-[2px] bg-[var(--c)] rounded-full" />
-            </span>
-            <h2 className="text-[clamp(28px,4vw,44px)] tracking-[-.04em] font-[800]">
-              Productos destacados
-            </h2>
-            <p className="text-[var(--m)] mt-3 max-w-[480px] mx-auto text-[15px]">
-              Los repuestos más buscados por nuestros clientes.
-            </p>
-          </div>
-
-          {/* Products Grid - 4 featured */}
-          <div className="products-grid grid grid-cols-2 md:grid-cols-4 gap-[18px]">
-            {featuredProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
-
-          {/* Ver catálogo completo */}
-          <div className="text-center mt-[40px]">
-            <Link
-              href="/catalogo"
-              className="btn-primary inline-flex items-center gap-2"
-            >
-              Ver catálogo completo
-              <ArrowRight size={16} />
-            </Link>
-          </div>
-        </div>
-      </section>
-
       {/* CTA Banner */}
-      <section className="mx-[4vw] my-8">
-        <div className="relative rounded-[24px] overflow-hidden bg-gradient-to-r from-[#151a1f] to-[#1e2530] p-[48px] grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          <div>
-            <span className="text-[var(--c)] text-[12px] font-[800] tracking-[.1em] uppercase mb-3 block">
+      <section className="px-[4vw] pb-[48px]">
+        <div className="relative rounded-[20px] overflow-hidden bg-gradient-to-r from-[var(--c)] to-[#e63a30] p-6 md:p-8">
+          <div className="relative z-10">
+            <span className="text-white/80 text-[12px] font-[700] tracking-[.05em] uppercase mb-2 block">
               ¿Necesitas ayuda?
             </span>
-            <h2 className="text-white text-[clamp(24px,3vw,36px)] tracking-[-.03em] font-[800] mb-4">
+            <h2 className="text-white text-[20px] md:text-[24px] font-[800] mb-3 max-w-[400px]">
               Encuentra el repuesto perfecto para tu vehículo
             </h2>
-            <p className="text-[#9ba4ae] text-[15px] mb-6 max-w-[420px]">
-              Nuestro equipo de expertos te ayuda a encontrar la pieza correcta. Contáctanos y recibe asesoría personalizada.
+            <p className="text-white/80 text-[13px] mb-5 max-w-[360px]">
+              Nuestro equipo te ayuda a encontrar la pieza correcta.
             </p>
             <a
               href="https://wa.me/584242704828?text=Hola%2C%20necesito%20ayuda%20para%20encontrar%20un%20repuesto"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-primary inline-flex items-center gap-2"
+              className="inline-flex items-center gap-2 bg-white text-[var(--c)] px-6 py-3 rounded-full font-[800] text-[14px] hover:shadow-lg transition-all duration-300"
             >
               Hablar con un asesor
               <ArrowRight size={16} />
             </a>
           </div>
-          <div className="hidden md:flex justify-center">
-            <div className="w-[200px] h-[200px] bg-[var(--c)]/10 rounded-full grid place-items-center">
-              <span className="text-[80px]">🔧</span>
-            </div>
+          <div className="absolute right-4 top-1/2 -translate-y-1/2 text-[80px] opacity-20 hidden md:block">
+            🔧
           </div>
         </div>
       </section>
