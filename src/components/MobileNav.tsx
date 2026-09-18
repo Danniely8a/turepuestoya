@@ -8,13 +8,18 @@ const navItems = [
   { href: "/", label: "Inicio", icon: Home },
   { href: "/catalogo", label: "Catálogo", icon: Clock },
   {
+    href: "https://mobile.cashea.app/merchants/1ca57a42-aef9-4e55-8483-395049ddc7bd",
+    label: "Cashea",
+    external: true,
+    cashea: true,
+  },
+  {
     href: "https://wa.me/584242704828?text=Hola%2C%20quisiera%20consultar%20por%20un%20repuesto",
     label: "WhatsApp",
     external: true,
     whatsapp: true,
   },
   { href: "/contacto", label: "Contacto", icon: Calendar },
-  { href: "/empresa", label: "Más", icon: LayoutGrid },
 ];
 
 export default function MobileNav() {
@@ -23,9 +28,28 @@ export default function MobileNav() {
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-50 md:hidden">
       <div className="mx-3 mb-3 bg-white rounded-[20px] shadow-[0_-4px_24px_rgba(0,0,0,0.08)] border border-[var(--l)]/30 safe-area-bottom">
-        <div className="flex items-center justify-between px-2 py-2">
+        <div className="flex items-center justify-between px-1 py-2">
           {navItems.map((item) => {
             const isActive = pathname === item.href;
+
+            if (item.cashea) {
+              return (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex flex-col items-center justify-center gap-1.5 py-2 px-2 transition-all duration-200 active:scale-95"
+                >
+                  <div className="w-[40px] h-[40px] bg-[#ffe033] rounded-[12px] grid place-items-center shadow-[0_4px_12px_rgba(255,224,51,0.4)]">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="#1a1a1a">
+                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15l-4-4 1.41-1.41L11 14.17l6.59-6.59L19 9l-8 8z"/>
+                    </svg>
+                  </div>
+                  <span className="text-[10px] font-[700] text-[var(--m)]">Cashea</span>
+                </a>
+              );
+            }
 
             if (item.whatsapp) {
               return (
